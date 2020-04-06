@@ -7,11 +7,10 @@ using System.Threading.Tasks;
 
 namespace WpfStaticDatabindingTest
 {
-    public sealed class StaticHelper : INotifyPropertyChanged//singleton
+    public sealed class StaticHelper : INotifyPropertyChanged //singleton class
     {
         private static StaticHelper instance = null;
         private static readonly object padlock = new object();
-        private static Foo g_Current = new Foo();
         private string staticString;
 
         public string StaticString 
@@ -28,7 +27,7 @@ namespace WpfStaticDatabindingTest
         {
         }
 
-        public static StaticHelper Instance
+        public static StaticHelper Instance //threadsafe
         {
             get
             {
@@ -42,45 +41,6 @@ namespace WpfStaticDatabindingTest
                 }
             }
         }
-
-        public static Foo Current
-        {
-            get { return g_Current; }
-        }
-
-        public event PropertyChangedEventHandler PropertyChanged;
-        private void RaisePropertyChanged(string property)
-        {
-            if (PropertyChanged != null)
-            {
-                PropertyChanged(this, new PropertyChangedEventArgs(property));
-            }
-        }
-
-    }
-
-    public class Foo : INotifyPropertyChanged
-    {
-        private string singletonString;
-
-        public string SingletonString
-        {
-            get { return singletonString; }
-            set
-            {
-                if (singletonString != value)
-                {
-                    singletonString = value;
-                    RaisePropertyChanged("SingletonString");
-                }
-            }
-        }
-
-        public Foo()
-        {
-            SingletonString = "Doodoo";
-        }
-
         public event PropertyChangedEventHandler PropertyChanged;
         private void RaisePropertyChanged(string property)
         {

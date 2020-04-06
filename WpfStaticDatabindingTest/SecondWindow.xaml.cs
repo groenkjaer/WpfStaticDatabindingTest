@@ -22,7 +22,6 @@ namespace WpfStaticDatabindingTest
         public SecondWindow()
         {
             InitializeComponent();
-            //DataContext = new ViewModelSHIET();
         }
     }
 }

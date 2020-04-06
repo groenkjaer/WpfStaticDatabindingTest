@@ -29,7 +29,7 @@ namespace WpfStaticDatabindingTest
             second.Show();
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void Button_Click(object sender, RoutedEventArgs e) //Flicker between two strings
         {
             if (StaticHelper.Instance.StaticString == "Old string")
             {
